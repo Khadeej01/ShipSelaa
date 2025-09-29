@@ -1,10 +1,11 @@
 package com.shipselaa.repository;
 
-import com.shipselaa.model.Manager;
+import com.shipselaa.model.Demande;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+
 @Repository
-public interface ManagerRepository extends JpaRepository<Manager, Long> {
-    Manager findByEmail(String email);
+public interface DemandeRepository extends JpaRepository<Demande, Long> {
+
 }
