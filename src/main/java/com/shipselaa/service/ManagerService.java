@@ -1,35 +1,18 @@
 package com.shipselaa.service;
 
 import com.shipselaa.model.Manager;
-import com.shipselaa.repository.ManagerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class ManagerService {
+public interface ManagerService {
 
-    @Autowired
-    private ManagerRepository managerRepository;
+    List<Manager> getAllManagers();
 
-    public List<Manager> getAllManagers() {
-        return managerRepository.findAll();
-    }
+    Optional<Manager> getManagerById(Long id);
 
-    public Optional<Manager> getManagerById(Long id) {
-        return managerRepository.findById(id);
-    }
+    Manager createManager(Manager manager);
 
-    public Manager getManagerByEmail(String email) {
-        return managerRepository.findByEmail(email);
-    }
+    Manager updateManager(Long id, Manager manager);
 
-    public Manager saveManager(Manager manager) {
-        return managerRepository.save(manager);
-    }
-
-    public void deleteManager(Long id) {
-        managerRepository.deleteById(id);
-    }
+    void deleteManager(Long id);
 }
