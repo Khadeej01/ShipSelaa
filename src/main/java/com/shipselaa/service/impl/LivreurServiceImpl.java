@@ -72,4 +72,10 @@ public class LivreurServiceImpl implements LivreurService {
         }
         livreurRepository.deleteById(id);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Livreur> getAvailableLivreurs() {
+        return livreurRepository.findByDisponible(true);
+    }
 }

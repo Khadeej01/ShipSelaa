@@ -54,7 +54,7 @@ A Spring Boot application for managing delivery requests with role-based access 
 1. Clone the repository
 2. Configure MySQL database in `application.properties`
 3. Run the application: `mvn spring-boot:run`
-4. Access the API at `http://localhost:8080`
+4. Access the API at `http://localhost:8083`
 
 ### Database Configuration
 The application is configured to work with MySQL. Update `application.properties` with your database credentials:
@@ -197,24 +197,24 @@ The application automatically creates sample data on startup:
 
 1. **Manager creates an order**:
    ```bash
-   curl -X POST http://localhost:8080/api/managers/1/demandes \
+   curl -X POST http://localhost:8083/api/managers/1/demandes \
    -H "Content-Type: application/json" \
    -d '{"lieuDepart":"Paris","lieuArrivee":"Lyon"}'
    ```
 
 2. **Assign to available livreur**:
    ```bash
-   curl -X PUT http://localhost:8080/api/managers/1/demandes/1/assign/1
+   curl -X PUT http://localhost:8083/api/managers/1/demandes/1/assign/1
    ```
 
 3. **Livreur accepts the order**:
    ```bash
-   curl -X PUT http://localhost:8080/api/livreurs/1/demandes/1/accept
+   curl -X PUT http://localhost:8083/api/livreurs/1/demandes/1/accept
    ```
 
 4. **Livreur updates status to delivered**:
    ```bash
-   curl -X PUT http://localhost:8080/api/livreurs/1/demandes/1/status?statut=LIVRE
+   curl -X PUT http://localhost:8083/api/livreurs/1/demandes/1/status?statut=LIVRE
    ```
 
 The system automatically handles availability management and relationship constraints throughout this workflow.

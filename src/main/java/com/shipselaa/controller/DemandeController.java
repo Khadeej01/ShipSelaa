@@ -34,12 +34,14 @@ public class DemandeController {
     }
 
     @PostMapping
-    public ResponseEntity<Demande> createDemande(@RequestBody Demande demande, @RequestParam Long managerId) {
+    public ResponseEntity<?> createDemande(@RequestBody Demande demande, @RequestParam Long managerId) {
         try {
             Demande createdDemande = demandeService.createDemandeByManager(managerId, demande);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdDemande);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body("Runtime error: " + e.getMessage());
         } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().body("Error creating demande: " + e.getMessage());
         }
     }
 
@@ -78,7 +80,7 @@ public class DemandeController {
     }
 
     @PostMapping("/{demandeId}/assign-livreur")
-    public ResponseEntity<Demande> assignLivreurToDemande(
+    public ResponseEntity<?> assignLivreurToDemande(
             @PathVariable Long demandeId, 
             @RequestParam Long livreurId, 
             @RequestParam Long managerId) {
@@ -86,9 +88,9 @@ public class DemandeController {
             Demande updatedDemande = demandeService.assignLivreurToDemande(demandeId, livreurId, managerId);
             return ResponseEntity.ok(updatedDemande);
         } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.badRequest().body("Runtime error: " + e.getMessage());
         } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().body("Error assigning livreur: " + e.getMessage());
         }
     }
 

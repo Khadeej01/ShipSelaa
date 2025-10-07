@@ -25,8 +25,14 @@ public class LivreurController {
     private DemandeService demandeService;
 
     @GetMapping
-    public ResponseEntity<List<Livreur>> getAllLivreurs() {
-        List<Livreur> livreurs = livreurService.getAllLivreurs();
+    public ResponseEntity<List<Livreur>> getAllLivreurs(
+            @RequestParam(value = "disponible", required = false) Boolean disponible) {
+        List<Livreur> livreurs;
+        if (disponible != null) {
+            livreurs = livreurService.getAvailableLivreurs();
+        } else {
+            livreurs = livreurService.getAllLivreurs();
+        }
         return ResponseEntity.ok(livreurs);
     }
 

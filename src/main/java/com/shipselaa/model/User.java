@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
+@Table(name = "app_user")
 @Inheritance(strategy = InheritanceType.JOINED)
 @Data
 public abstract class User {

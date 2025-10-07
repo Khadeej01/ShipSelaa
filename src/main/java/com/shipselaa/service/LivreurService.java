@@ -15,4 +15,6 @@ public interface LivreurService {
     Livreur updateLivreur(Long id, Livreur livreur);
 
     void deleteLivreur(Long id);
+    
+    List<Livreur> getAvailableLivreurs();
 }
